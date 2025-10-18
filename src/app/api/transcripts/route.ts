@@ -20,6 +20,7 @@ export async function GET(request: Request) {
       videoAuthor: videoData.author_name,
     });
   } catch (error) {
+    console.log(error)
     return NextResponse.json(
       { error: 'Failed to fetch transcript' },
       { status: 500 }

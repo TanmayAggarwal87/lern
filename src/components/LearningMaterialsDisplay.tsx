@@ -31,7 +31,7 @@ export default function LearningMaterialsDisplay({ materials, videoTitle }: Prop
         {["summary", "flashcards", "exercises"].map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab as any)}
+            onClick={() => setActiveTab(tab as ("summary" | "flashcards" | "exercises"))}
             className={`relative pb-3 px-2 text-lg transition-all ${
               activeTab === tab
                 ? "text-fuchsia-400 font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-fuchsia-500 after:to-cyan-500"

@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
     if (!videoResponse.ok) throw new Error("Failed to fetch video metadata");
 
     const videoData = await videoResponse.json();
-    const transcriptText = transcript.map((i: any) => i.text).join(" ");
+    const transcriptText = transcript.map((i) => i.text).join(" ");
     const duration =
       transcript.length > 0
         ? `${Math.round(transcript[transcript.length - 1].offset / 60000)} minutes`

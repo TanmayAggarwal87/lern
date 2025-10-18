@@ -6,7 +6,9 @@ export async function GET(request: Request) {
   const id = searchParams.get('id') || 'tAC_7_H_5kI';
   
   try {
-    const transcript = await fetchTranscript(id);
+    const transcript = await fetchTranscript(id,{
+  disableHttps: true, // Use HTTP instead of HTTPS
+});
     
     // Fetch video metadata from YouTube
     const videoResponse = await fetch(

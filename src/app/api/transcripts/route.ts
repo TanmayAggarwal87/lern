@@ -16,9 +16,9 @@ export async function GET(request: Request) {
     const transcriptData = await info.getTranscript();
     
     // Transform to match your original format
-    const transcript = transcriptData?.transcript?.content?.body?.initial_segments.map((segment: any) => ({
+    const transcript = transcriptData?.transcript?.content?.body?.initial_segments.map((segment) => ({
       text: segment.snippet.text,
-      duration: segment.end_ms - segment.start_ms,
+      duration: Number(segment.end_ms) - Number(segment.start_ms),
       offset: segment.start_ms,
     }));
     

@@ -117,7 +117,7 @@ Return valid JSON with 8 flashcards and 6 exercises:
   console.log('Calling Gemini API...');
   
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
+    model: "gemini-2.5-flash-lite",
     contents: prompt,
     config: {
       temperature: 0.4,

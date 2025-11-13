@@ -1,28 +1,34 @@
 import { NextResponse } from 'next/server';
-import { fetchTranscript } from 'youtube-transcript-plus';
+import { Innertube } from 'youtubei.js';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id') || 'tAC_7_H_5kI';
   
   try {
-    const transcript = await fetchTranscript(id,{
-  disableHttps: true, // Use HTTP instead of HTTPS
-});
+    // Initialize Innertube
+    const yt = await Innertube.create();
     
-    // Fetch video metadata from YouTube
-    const videoResponse = await fetch(
-      `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`
-    );
-    const videoData = await videoResponse.json();
+    // Get video info
+    const info = await yt.getInfo(id);
+    
+    // Get transcript
+    const transcriptData = await info.getTranscript();
+    
+    // Transform to match your original format
+    const transcript = transcriptData?.transcript?.content?.body?.initial_segments.map((segment: any) => ({
+      text: segment.snippet.text,
+      duration: segment.end_ms - segment.start_ms,
+      offset: segment.start_ms,
+    }));
     
     return NextResponse.json({ 
       transcript,
-      videoTitle: videoData.title,
-      videoAuthor: videoData.author_name,
+      videoTitle: info.basic_info.title,
+      videoAuthor: info.basic_info.author,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return NextResponse.json(
       { error: 'Failed to fetch transcript' },
       { status: 500 }

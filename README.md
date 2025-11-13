@@ -1,8 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+  # Lern: AI-Powered Learning Platform
 
-## Getting Started
+Lern is an innovative web application designed to revolutionize the way users acquire knowledge. Leveraging the power of Artificial Intelligence, specifically the Google Gemini API, Lern allows users to generate comprehensive and personalized learning materials from youtube video URL's allowing them to create flash cards excercises and description of a video for better learning and escaping the ` Tutorial Hell `. It aims to provide a dynamic and efficient platform for creating study guides, summaries, and educational content tailored to individual learning needs.
 
-First, run the development server:
+## ✨ Features
+
+*   **Intelligent Content Generation:** Utilizes the Google Gemini API to produce high-quality, context-aware learning materials.
+*   **Transcript-to-Learning Material:** Ability to process and transform raw transcripts (e.g., from videos) into structured educational content, making complex information digestible.
+*   **Personalized Learning Paths:** Dynamic routing enables dedicated pages for each generated learning module, allowing for focused and organized study.
+*   **Modern & Responsive UI:** Built with Next.js and Shadcn UI components for a seamless, intuitive, and visually appealing user experience across devices.
+*   **Scalable API Architecture:** Organized API routes provide robust backend support for managing content generation and transcript processing.
+
+## 💻 Tech Stack
+
+*   **Frontend Framework:** [Next.js](https://nextjs.org/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **UI Library:** [React](https://react.dev/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **UI Components:** [Shadcn UI](https://ui.shadcn.com/)
+*   **AI Integration:** [Google Gemini API](https://ai.google.dev/gemini)
+*   **Code Quality:** [ESLint](https://eslint.org/)
+*   **Package Manager:** [npm](https://www.npmjs.com/) / [Yarn](https://yarnpkg.com/) / [pnpm](https://pnpm.io/)
+
+## 🚀 Installation Guide
+
+To get Lern up and running on your local machine, follow these steps:
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/TanmayAggarwal87/lern.git
+cd lern
+```
+
+### 2. Install dependencies
+
+Choose your preferred package manager:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+### 3. Set up Environment Variables
+
+Create a `.env.local` file in the root directory of the project and add your Google Gemini API key:
+
+```
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+```
+
+You can obtain a free API key from [Google AI Studio](https://ai.google.dev/).
+
+### 4. Run the Development Server
+
+Start the Next.js development server:
 
 ```bash
 npm run dev
@@ -10,27 +64,52 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+.
+├── public/                      # Static assets (images, favicons, SVGs)
+├── src/
+│   ├── app/                     # Next.js App Router (pages and API routes)
+│   │   ├── [id]/                # Dynamic route for displaying individual learning materials
+│   │   │   └── page.tsx         # Page for a specific learning material ID
+│   │   ├── api/                 # Backend API routes for data fetching and processing
+│   │   │   ├── gemini/          # API endpoint for interacting with the Gemini AI model
+│   │   │   │   └── route.ts     # Handles AI content generation requests
+│   │   │   └── transcripts/     # API endpoint for processing transcripts
+│   │   │       └── route.ts     # Handles transcript-related requests (e.g., parsing)
+│   │   ├── favicon.ico          # Application favicon
+│   │   ├── globals.css          # Global CSS styles (includes Tailwind CSS directives)
+│   │   ├── layout.tsx           # Root layout component for the entire application
+│   │   └── page.tsx             # The main landing page of the application
+│   ├── components/              # Reusable React components
+│   │   ├── LearningMaterialsDisplay.tsx # Component responsible for rendering generated learning content
+│   │   └── ui/                  # Shadcn UI components (e.g., buttons, cards, inputs)
+│   │       ├── badge.tsx
+│   │       ├── button.tsx
+│   │       ├── card.tsx
+│   │       └── input.tsx
+│   └── lib/                     # Utility functions, type definitions, and core logic
+│       ├── generateLearningMaterials.ts # Core function for orchestrating AI material generation
+│       ├── types.ts             # TypeScript type definitions for various data structures
+│       └── utils.ts             # General utility functions and helpers
+├── .gitignore                   # Specifies intentionally untracked files to ignore
+├── components.json              # Configuration file for Shadcn UI components
+├── eslint.config.mjs            # ESLint configuration for maintaining code quality
+├── next.config.ts               # Next.js specific configuration file
+├── package.json                 # Project metadata, scripts, and dependencies
+├── package-lock.json            # Records the exact dependency tree (for npm)
+├── postcss.config.mjs           # PostCSS configuration, typically for Tailwind CSS processing
+├── tsconfig.json                # TypeScript compiler configuration
+└── README.md                    # This README file
+```
 
-## Learn More
+## 📄 License
 
-To learn more about Next.js, take a look at the following resources:
+This project is licensed under the MIT License. See the `LICENSE` file (to be created) for more details.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-- made by docify --

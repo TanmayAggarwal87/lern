@@ -13,9 +13,9 @@ export async function POST(request: Request) {
       );
     }
 
-    // Call your EXPRESS BACKEND
+    // Call backend
     const backendRes = await fetch(
-      `http://localhost:3001/transcript?id=${videoId}`,
+      `lern-production.up.railway.app/transcript?id=${videoId}`,
       {
         method: "GET",
       }
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
 
     const { transcript, videoTitle, duration } = await backendRes.json();
 
-    // Now pass transcript → Gemini
+    // pass transcripts
     const materials = await generateLearningMaterials(
       videoTitle,
       duration,
